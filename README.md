@@ -1,18 +1,91 @@
 # GlobalTNA — Mini Service Request Board
 
-A full-stack web application connecting homeowners with local tradespeople. Homeowners can post service requests; tradespeople can browse, filter, and manage job status.
+> Full-Stack Developer Intern Technical Assessment Submission
+
+**Submitted by:** K.M. Sanduni Apsara Sirimanna  
+**Email:** sandu8098@gmail.com  
+**GitHub:** [github.com/SanduniApsara](https://github.com/SanduniApsara)  
+**LinkedIn:** [linkedin.com/in/sanduni-sirimanna](https://www.linkedin.com/in/sanduni-sirimanna)  
+**Repository:** [github.com/SanduniApsara/globaltna](https://github.com/SanduniApsara/globaltna)
+
+---
+
+## What I Built
+
+A full-stack web application that connects homeowners with local tradespeople. Homeowners can post service requests and tradespeople can browse, filter, and manage job status — a stripped-down, single-page version of the GlobalTNA platform.
+
+---
+
+## Screenshots
+
+### 1. Service Request Board — Home Page
+> All job requests displayed as cards with category badges, status indicators, location, and date. Filters for category and status are visible at the top.
+<img width="1920" height="902" alt="Screenshot (110)" src="https://github.com/user-attachments/assets/1b4fcb17-b303-429b-8760-768957931017" />
+
+---
+
+### 2. Category Filter — painting
+> Filtering the board by "painting" category instantly shows only relevant jobs.
+
+<img width="1920" height="909" alt="Screenshot (112)" src="https://github.com/user-attachments/assets/ecc47a57-f147-4ab3-b455-449d7081f56d" />
+
+---
+
+### 3. Keyword Search
+> Searching for "leaking" filters jobs by matching title and description in real time.
+
+<img width="1920" height="924" alt="Screenshot (111)" src="https://github.com/user-attachments/assets/735b5026-2bcc-44f4-82d5-17a8122c7618" />
+
+---
+
+### 4. Job Detail Page
+> Full job details with contact information, status dropdown, and delete button.
+
+<img width="1920" height="915" alt="Screenshot (113)" src="https://github.com/user-attachments/assets/e7249844-795d-404b-9028-0ec4f74383ef" />
+
+
+---
+
+### 5. Status Update — Success
+> Tradespeople can update job status to "In Progress" or "Closed". Green confirmation message shown on save.
+
+<img width="1920" height="912" alt="Screenshot (115)" src="https://github.com/user-attachments/assets/5893104e-d2a9-4bbf-a3d9-78d9596ed96c" />
+
+
+---
+
+### 6. Post a Job Form
+> Homeowners fill in a validated form to post a new service request. Required fields are marked and validated on both client and server.
+
+<img width="1920" height="904" alt="Screenshot (116)" src="https://github.com/user-attachments/assets/7f2a7722-588d-4f5f-bc5c-1380c1c0b5a4" />
+
+
+---
+
+### 7. REST API Response
+> The Express API returning all jobs as JSON at `http://localhost:5000/api/jobs`.
+
+<img width="1920" height="675" alt="Screenshot (117)" src="https://github.com/user-attachments/assets/fd77ee94-04f4-4223-9af9-927488275eb4" />
+
+
+---
+
+### 8. MongoDB Compass — jobRequests Collection
+> All job documents visible in MongoDB Compass showing the `globaltna` database and `jobRequests` collection.
+
+<img width="1760" height="978" alt="Screenshot (118)" src="https://github.com/user-attachments/assets/d024b73d-da50-4cc7-beb8-8c2a179640d0" />
+
 
 ---
 
 ## Tech Stack
 
-| Layer    | Technology                  |
-|----------|-----------------------------|
-| Frontend | Next.js 14 (App Router)     |
-| Backend  | Node.js + Express.js        |
-| Database | MongoDB (Atlas or local)    |
-| ODM      | Mongoose                    |
-| Styling  | Plain CSS (CSS Variables)   |
+| Layer      | Technology                        |
+|------------|-----------------------------------|
+| Frontend   | Next.js 14 (App Router)           |
+| Backend    | Node.js + Express.js              |
+| Database   | MongoDB (local) + Mongoose ODM    |
+| Styling    | Plain CSS with CSS Variables      |
 
 ---
 
@@ -22,15 +95,15 @@ A full-stack web application connecting homeowners with local tradespeople. Home
 globaltna/
 ├── backend/
 │   ├── middleware/
-│   │   └── errorHandler.js    # Global error handler
+│   │   └── errorHandler.js       # Global error handler
 │   ├── models/
-│   │   └── JobRequest.js      # Mongoose schema/model
+│   │   └── JobRequest.js         # Mongoose schema
 │   ├── routes/
-│   │   └── jobs.js            # All /api/jobs endpoints
+│   │   └── jobs.js               # All REST API endpoints
 │   ├── utils/
-│   │   └── db.js              # MongoDB connection
-│   ├── seed.js                # Seed script (8 sample jobs)
-│   ├── server.js              # Express entry point
+│   │   └── db.js                 # MongoDB connection
+│   ├── seed.js                   # Seed script (8 sample jobs)
+│   ├── server.js                 # Express entry point
 │   ├── .env.example
 │   └── package.json
 │
@@ -38,12 +111,12 @@ globaltna/
     ├── app/
     │   ├── globals.css
     │   ├── layout.js
-    │   ├── page.js              # Home — job board with filters
+    │   ├── page.js               # Home — job board with filters
     │   └── jobs/
-    │       ├── new/page.js      # Create new job request
-    │       └── [id]/page.js     # Job detail + status + delete
+    │       ├── new/page.js       # Create new job request
+    │       └── [id]/page.js      # Job detail + status + delete
     ├── lib/
-    │   └── api.js               # Fetch helpers (talks to Express)
+    │   └── api.js                # All fetch calls to Express API
     ├── .env.local.example
     ├── next.config.js
     └── package.json
@@ -53,9 +126,9 @@ globaltna/
 
 ## Prerequisites
 
-- Node.js v18+
-- npm v9+
-- A MongoDB Atlas account (free tier) **or** MongoDB running locally
+- Node.js v18 or higher
+- npm v9 or higher
+- MongoDB installed locally **or** a free MongoDB Atlas account
 
 ---
 
@@ -63,96 +136,113 @@ globaltna/
 
 ### Backend — `backend/.env`
 
-Copy `backend/.env.example` to `backend/.env`:
-
-```bash
-cp backend/.env.example backend/.env
-```
-
-| Variable    | Description                              | Example                              |
-|-------------|------------------------------------------|--------------------------------------|
-| `PORT`      | Port the Express server listens on       | `5000`                               |
-| `MONGO_URI` | Full MongoDB connection string           | `mongodb+srv://user:pass@cluster...` |
-
-**Getting a MongoDB Atlas URI:**
-1. Create a free cluster at [mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas)
-2. In *Database Access*, create a user with read/write permissions
-3. In *Network Access*, allow your IP (or `0.0.0.0/0` for development)
-4. In *Clusters*, click **Connect → Drivers** and copy the URI
-5. Replace `<password>` with your database user's password
+| Variable    | Description                          | Example                                        |
+|-------------|--------------------------------------|------------------------------------------------|
+| `PORT`      | Port the Express server listens on   | `5000`                                         |
+| `MONGO_URI` | MongoDB connection string            | `mongodb://localhost:27017/globaltna`          |
 
 ### Frontend — `frontend/.env.local`
 
-Copy `frontend/.env.local.example` to `frontend/.env.local`:
-
-```bash
-cp frontend/.env.local.example frontend/.env.local
-```
-
-| Variable               | Description                 | Default                     |
-|------------------------|-----------------------------|-----------------------------|
-| `NEXT_PUBLIC_API_URL`  | URL of the Express backend  | `http://localhost:5000`     |
+| Variable                | Description                   | Default                      |
+|-------------------------|-------------------------------|------------------------------|
+| `NEXT_PUBLIC_API_URL`   | URL of the Express backend    | `http://localhost:5000`      |
 
 ---
 
 ## Setup & Run Instructions
 
-### 1. Install dependencies
+### Step 1 — Clone the repository
 
-Open two terminal windows.
+```bash
+git clone https://github.com/SanduniApsara/globaltna.git
+cd globaltna
+```
 
-**Terminal 1 — Backend:**
+### Step 2 — Set up the backend
+
 ```bash
 cd backend
 npm install
+cp .env.example .env
 ```
 
-**Terminal 2 — Frontend:**
+Open `backend/.env` and set your MongoDB URI:
+
+```
+PORT=5000
+MONGO_URI=mongodb://localhost:27017/globaltna
+```
+
+### Step 3 — Set up the frontend
+
 ```bash
-cd frontend
+cd ../frontend
 npm install
+cp .env.local.example .env.local
 ```
 
-### 2. Configure environment variables
+The `.env.local` file should contain:
 
+```
+NEXT_PUBLIC_API_URL=http://localhost:5000
+```
+
+### Step 4 — Start MongoDB
+
+**Local MongoDB:**
 ```bash
-# Backend
-cp backend/.env.example backend/.env
-# Edit backend/.env and add your MONGO_URI
-
-# Frontend
-cp frontend/.env.local.example frontend/.env.local
-# Edit if your backend runs on a port other than 5000
+mongod --dbpath /data/db
 ```
 
-### 3. (Optional) Seed the database
-
+**Or on Windows (if mongod is not in PATH):**
 ```bash
-cd backend
-npm run seed
+& "C:\Program Files\MongoDB\Server\8.2\bin\mongod.exe" --dbpath "C:\data\db"
 ```
 
-This inserts 8 realistic sample job requests across all categories and statuses.
-
-### 4. Start the backend
+### Step 5 — Start the backend
 
 ```bash
 cd backend
-npm run dev    # development (nodemon, auto-restarts)
-# or
-npm start      # production
+node server.js
 ```
 
-The Express API will be available at **http://localhost:5000**
+You should see:
+```
+Server running on http://localhost:5000
+MongoDB connected: localhost
+```
 
-### 5. Start the frontend
+### Step 6 — Start the frontend
 
 ```bash
 cd frontend
 npm run dev
 ```
 
-The Next.js app will be available at **http://localhost:3000**
+You should see:
+```
+▲ Next.js 14
+- Local: http://localhost:3000
+✓ Ready
+```
+
+### Step 7 — (Optional) Seed sample data
+
+```bash
+cd backend
+node seed.js
+```
+
+This inserts 8 realistic sample job requests covering all categories and statuses.
+
+---
+
+## The application will be running at:
+
+| Service  | URL                          |
+|----------|------------------------------|
+| Website  | http://localhost:3000        |
+| API      | http://localhost:5000        |
 
 ---
 
@@ -160,28 +250,28 @@ The Next.js app will be available at **http://localhost:3000**
 
 Base URL: `http://localhost:5000`
 
-| Method | Endpoint          | Description                     |
-|--------|-------------------|---------------------------------|
-| GET    | `/api/jobs`       | List all jobs (with filters)    |
-| GET    | `/api/jobs/:id`   | Get a single job                |
-| POST   | `/api/jobs`       | Create a new job request        |
-| PATCH  | `/api/jobs/:id`   | Update job status only          |
-| DELETE | `/api/jobs/:id`   | Delete a job request            |
+| Method | Endpoint          | Description                          |
+|--------|-------------------|--------------------------------------|
+| GET    | `/api/jobs`       | List all jobs (supports filters)     |
+| GET    | `/api/jobs/:id`   | Get a single job by ID               |
+| POST   | `/api/jobs`       | Create a new job request             |
+| PATCH  | `/api/jobs/:id`   | Update job status only               |
+| DELETE | `/api/jobs/:id`   | Delete a job request                 |
 
 ### Query Parameters — `GET /api/jobs`
 
-| Param      | Example          | Description                 |
-|------------|------------------|-----------------------------|
-| `category` | `?category=Plumbing` | Filter by trade category |
-| `status`   | `?status=Open`   | Filter by status            |
-| `search`   | `?search=tap`    | Keyword search (title + description) |
+| Parameter  | Example               | Description                          |
+|------------|-----------------------|--------------------------------------|
+| `category` | `?category=Plumbing`  | Filter by trade category             |
+| `status`   | `?status=Open`        | Filter by status                     |
+| `search`   | `?search=tap`         | Keyword search in title + description|
 
-### Request body — `POST /api/jobs`
+### POST /api/jobs — Request Body
 
 ```json
 {
   "title": "Leaking kitchen tap",
-  "description": "Dripping tap under the kitchen sink, needs urgent repair.",
+  "description": "Dripping tap under the kitchen sink.",
   "category": "Plumbing",
   "location": "Glasgow",
   "contactName": "Margaret Thomson",
@@ -189,56 +279,65 @@ Base URL: `http://localhost:5000`
 }
 ```
 
-### Request body — `PATCH /api/jobs/:id`
+### PATCH /api/jobs/:id — Request Body
 
 ```json
 { "status": "In Progress" }
 ```
 
-Valid status values: `"Open"`, `"In Progress"`, `"Closed"`
+Valid values: `"Open"` · `"In Progress"` · `"Closed"`
 
 ---
 
-## Features
+## Data Model — `jobRequests` Collection
 
-### Core
-- **Job Board** — filterable list of all requests (category + status + keyword search)
-- **Post a Request** — form with client-side and server-side validation
-- **Job Detail** — full job view with status management and delete
-
-### Bonus implemented
-- **Keyword search** — searches title and description via regex on the backend
-- **Seed script** — 8 realistic sample jobs (`npm run seed` in `/backend`)
+| Field          | Type     | Rules                                              |
+|----------------|----------|----------------------------------------------------|
+| `title`        | String   | Required                                           |
+| `description`  | String   | Required                                           |
+| `category`     | String   | Required · Enum: Plumbing, Electrical, Painting, Joinery, Other |
+| `location`     | String   | Required                                           |
+| `contactName`  | String   | Required                                           |
+| `contactEmail` | String   | Required · Must be valid email format              |
+| `status`       | String   | Enum: Open, In Progress, Closed · Default: Open    |
+| `createdAt`    | Date     | Auto-set by Mongoose timestamps                    |
+| `updatedAt`    | Date     | Auto-set by Mongoose timestamps                    |
 
 ---
 
-## Data Model — `jobRequests` collection
+## Features Implemented
 
-```
-title         String    required
-description   String    required
-category      String    required — enum: Plumbing | Electrical | Painting | Joinery | Other
-location      String    required
-contactName   String    required
-contactEmail  String    required — validated email format
-status        String    enum: Open | In Progress | Closed — default: Open
-createdAt     Date      auto-set by Mongoose timestamps
-updatedAt     Date      auto-set by Mongoose timestamps
-```
+### Core Requirements ✅
+- Job board with card layout showing all requests
+- Category filter dropdown
+- Status filter dropdown
+- Post a new job request with client-side and server-side validation
+- Job detail page with full information
+- Status update dropdown (Open → In Progress → Closed)
+- Delete job request with confirmation
+- REST API with all 5 endpoints and correct HTTP status codes
+- Global error handler and 404 handling
+- Frontend communicates exclusively with Express API (no direct MongoDB access)
+
+### Bonus Features ✅
+- **Keyword search** — searches both title and description via regex on the backend
+- **Seed script** — inserts 8 realistic sample jobs across all categories and statuses
 
 ---
 
 ## Design Decisions
 
-- **Backend is fully separate** from Next.js — the frontend talks exclusively to the Express API, never directly to MongoDB
-- **No Next.js API routes** used — all data fetching goes through `lib/api.js` → Express
-- **Client components** (`"use client"`) used for interactive pages; the layout is a server component
-- **Mongoose** handles both validation and the ODM layer; a separate manual check on `POST` provides cleaner error messages for missing fields
-- **Global error handler** in Express catches any unhandled errors and returns consistent JSON
+- **Strict separation** — the Next.js frontend never connects to MongoDB directly; all data flows through the Express API via `lib/api.js`
+- **No Next.js API routes** — all endpoints live in the Express backend as required
+- **Mongoose validation + manual checks** — Mongoose handles schema validation while a manual pre-check on POST gives cleaner error messages for missing fields
+- **Client components** — interactive pages use `"use client"` while the root layout remains a server component
+- **useRef for form inputs** — prevents re-render lag on every keystroke in the job creation form
 
 ---
 
-## Submission
+## Author
 
-- **GitHub repository:** _[your repo URL here]_
-- **Live demo:** _[Vercel + Render URLs if deployed]_
+**K.M. Sanduni Apsara Sirimanna**  
+📧 sandu8098@gmail.com  
+🔗 [linkedin.com/in/sanduni-sirimanna](https://www.linkedin.com/in/sanduni-sirimanna)  
+🐙 [github.com/SanduniApsara](https://github.com/SanduniApsara)
