@@ -128,4 +128,23 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
+// Temporary seed route
+router.post("/seed-data", async (req, res, next) => {
+  try {
+    const JobRequest = require("../models/JobRequest");
+    await JobRequest.deleteMany({});
+    await JobRequest.insertMany([
+      { title: "Leaking kitchen tap", description: "Kitchen tap dripping for a week, needs urgent repair.", category: "Plumbing", location: "Glasgow", contactName: "Margaret Thomson", contactEmail: "m.thomson@example.com", status: "Open" },
+      { title: "Rewire living room sockets", description: "Three sockets faulty, need two new double sockets added.", category: "Electrical", location: "Edinburgh", contactName: "David Mackay", contactEmail: "d.mackay@example.com", status: "Open" },
+      { title: "Full interior repaint", description: "3-bedroom flat needs full repaint, paint supplied.", category: "Painting", location: "Aberdeen", contactName: "Fiona Campbell", contactEmail: "fiona.c@example.com", status: "Open" },
+      { title: "Bespoke fitted wardrobe", description: "Floor-to-ceiling wardrobe 3.5m wide, sliding doors preferred.", category: "Joinery", location: "Inverness", contactName: "Callum Fraser", contactEmail: "callum.fraser@example.com", status: "Open" },
+      { title: "Boiler pressure dropping", description: "Boiler loses pressure every few days, needs inspection.", category: "Plumbing", location: "Dundee", contactName: "Susan Reid", contactEmail: "s.reid@example.com", status: "Closed" },
+      { title: "Garden shed wiring", description: "Run power to shed, RCD circuit, two lights, one socket.", category: "Electrical", location: "Perth", contactName: "Ian Stewart", contactEmail: "ian.stewart@example.com", status: "Open" },
+      { title: "Exterior masonry painting", description: "Semi-detached house exterior needs weatherproof repaint.", category: "Painting", location: "Stirling", contactName: "Anne Morrison", contactEmail: "anne.m@example.com", status: "Open" },
+      { title: "Staircase banister replacement", description: "Old pine banister unsafe, replace with oak handrail.", category: "Joinery", location: "Glasgow", contactName: "Robert Wilson", contactEmail: "r.wilson@example.com", status: "In Progress" }
+    ]);
+    res.json({ success: true, message: "Seeded 8 jobs" });
+  } catch (err) { next(err); }
+});
+
 module.exports = router;
