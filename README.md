@@ -6,9 +6,7 @@
 **GitHub:** [github.com/SanduniApsara](https://github.com/SanduniApsara)  
 **LinkedIn:** [linkedin.com/in/sanduni-sirimanna](https://www.linkedin.com/in/sanduni-sirimanna)  
 **GitHub repository:** https://github.com/SanduniApsara/globaltna
-
 **Frontend (Live):** https://globaltna.vercel.app
-
 **Backend API (Live):** https://globaltna-production-deab.up.railway.app
 ---
 
