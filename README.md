@@ -1,13 +1,13 @@
 # GlobalTNA — Mini Service Request Board
 
 > Full-Stack Developer Intern Technical Assessment Submission
-
 **Submitted by:** K.M. Sanduni Apsara Sirimanna  
 **Email:** sandu8098@gmail.com  
 **GitHub:** [github.com/SanduniApsara](https://github.com/SanduniApsara)  
 **LinkedIn:** [linkedin.com/in/sanduni-sirimanna](https://www.linkedin.com/in/sanduni-sirimanna)  
-**Repository:** [github.com/SanduniApsara/globaltna](https://github.com/SanduniApsara/globaltna)
-
+**GitHub repository:** https://github.com/SanduniApsara/globaltna
+**Frontend (Live):** https://globaltna.vercel.app
+**Backend API (Live):** https://globaltna-production-deab.up.railway.app
 ---
 
 ## What I Built
